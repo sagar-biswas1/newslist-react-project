@@ -5,7 +5,7 @@ const NewsList = ({news}) => {
 
 
     return (
-      <div className="row row-cols-1 row-cols-md-3 g-4 mt-5 container">
+      <div className="row row-cols-1 row-cols-md-3 g-4 mt-5 container mx-auto">
         {news && news.length === 0 && (
           <h1 className="text-center text-warning fw-bold p-3">
             NO NEWS FOUND

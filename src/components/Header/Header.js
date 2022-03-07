@@ -21,7 +21,7 @@ class Header extends Component {
 
 
   render() {
-   const {category}=this.props
+   const {category,setCategory}=this.props
     return (
       <div className="container">
         <div className="d-flex justify-content-between p-3 bg-info">
@@ -43,6 +43,7 @@ class Header extends Component {
             Object.keys(newsCategories).map((item) =>
               category === newsCategories[item] ? (
                 <button
+                  onClick={() => setCategory(newsCategories[item])}
                   key={newsCategories[item]}
                   className="btn btn-small btn-warning mx-2"
                 >
@@ -50,6 +51,7 @@ class Header extends Component {
                 </button>
               ) : (
                 <button
+                  onClick={() => setCategory(newsCategories[item])}
                   className="btn btn-small btn-primary mx-2"
                   key={newsCategories[item]}
                 >

@@ -33,6 +33,8 @@ export default class News {
         category: this._category,
         currentPage: this._currentPage,
         totalResult: data.totalResults,
+        isNext:this._isNext(),
+        isPrevious: this._isPrevious(),
       };
     } catch (e) {
       throw new Error(e);
@@ -40,7 +42,9 @@ export default class News {
   };
 
   next() {
+    console.log('sorry')
     if (this._isNext()) {
+      console.log('hello')
       this._currentPage++;
       return this.getNews();
     }
@@ -49,12 +53,16 @@ export default class News {
   }
 
   previous() {
+    console.log("sorry");
     if (this._isPrevious()) {
+       console.log("hello");
       this._currentPage--;
       return this.getNews();
     }
     return false;
   }
+
+
 
   setCurrentPage(pageNumber) {
     if (pageNumber < 1 && pageNumber > this._totalPage) {
@@ -79,7 +87,7 @@ export default class News {
   }
 
   _getUrl() {
-    let url = `top-headlines?apiKey=`;
+    let url = `top-headlines?apiKey=${apiKey}`;
     if (this._category) url += `&category=${this._category}`;
 
     if (this._searchTerm) url += `&q=${this._searchTerm}`;

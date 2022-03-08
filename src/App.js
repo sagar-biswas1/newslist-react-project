@@ -7,20 +7,27 @@ import Header from './components/Header/Header';
 import Loading from './components/Loading/Loading';
 import NewsList from './components/NewsList/NewsList';
 import Pagination from './components/Pagination/Pagination';
- import { useState } from 'react';
-import {newsCategories} from './newsCategory/index'
+import { useState } from 'react';
+import News, {newsCategories} from './newsCategory/index'
+
+
+
+
+
+
 function App() {
 
-const [news, setNews]= useState([]);
-const [category, setCategory] = useState(newsCategories.technology);
+  const [news, setNews]= useState([]);
+  const [category, setCategory] = useState(newsCategories.technology);
 
-  useEffect(() => {
-    console.log(process.env.REACT_APP_API_KEY);
-    axios
-      .get(
-        // `https://newsapi.org/v2/top-headlines?apiKey=6ef33175ea344ae9a50694cda7551c4c&category=${category}&pageSize=2`
-      )
-      .then((data) => setNews(data.data.articles));
+   useEffect(() => {
+   const news=new News(category)
+   news.getNews().then(data=>setNews(data.articles))
+    // axios
+    //   .get(
+    //     // `https://newsapi.org/v2/top-headlines?apiKey=6ef33175ea344ae9a50694cda7551c4c&category=${category}&pageSize=2`
+    //   )
+    //   .then((data) => setNews(data.data.articles));
   }, [category]);
   
 

@@ -75,6 +75,8 @@ export default class News {
   }
 
   changeCategory(newsCategory) {
+console.log("chategory",newsCategory)
+
     this._category = newsCategory;
     this._currentPage = 1;
     return this.getNews();

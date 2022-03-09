@@ -61,17 +61,26 @@ const previous = () => {
 
 
 const handlePageNumberInput= (number)=>{
-// setAllNewsData({ newsData: {}, isLoading: true });
-//   news.setCurrentPage(parseInt(number)).then((data)=>{
-// setAllNewsData({ newsData: data, isLoading: false });
-  // })
+setAllNewsData({ newsData: {}, isLoading: true });
+  news.setCurrentPage(parseInt(number)).then((data)=>{
+setAllNewsData({ newsData: data, isLoading: false });
+  })
 
   console.log(number)
 
 }
+
+const handleCategory=(value)=>{
+setCategory(value)
+  setAllNewsData({ newsData: {}, isLoading: true });
+  news.changeCategory(value).then((data) => {
+    setAllNewsData({ newsData: data, isLoading: false });
+  });
+
+}
   return (
     <div className="App">
-      <Header category={category} setCategory={setCategory} />
+      <Header category={category} handleCategory={handleCategory} />
       <div className="my-3">
         {!allNewsData.isLoading && (
           <span>

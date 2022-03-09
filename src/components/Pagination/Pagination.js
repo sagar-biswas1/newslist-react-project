@@ -33,11 +33,12 @@ export default class Pagination extends Component {
               value={this.state.inputFieldValue}
               onChange={(e) =>{ 
                 this.setState({inputFieldValue: e.target.value})
-                handlePageNumberInput(e.target.value)}}
+                handlePageNumberInput(this.state.inputFieldValue)}}
 
                 onKeyPress={(e)=>{
                   if(e.key==="Enter"){
                     this.setState({isEditable:false})
+                     handlePageNumberInput(this.state.inputFieldValue)
                   }
                 }}
             />

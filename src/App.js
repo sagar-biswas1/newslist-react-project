@@ -56,8 +56,19 @@ const previous = () => {
     return
   }
 
- return
+ return false
 };
+
+
+const handlePageNumberInput= (number)=>{
+// setAllNewsData({ newsData: {}, isLoading: true });
+//   news.setCurrentPage(parseInt(number)).then((data)=>{
+// setAllNewsData({ newsData: data, isLoading: false });
+  // })
+
+  console.log(number)
+
+}
   return (
     <div className="App">
       <Header category={category} setCategory={setCategory} />
@@ -80,8 +91,11 @@ const previous = () => {
       <Pagination
         next={next}
         previous={previous}
+        isNext={allNewsData?.newsData?.isNext}
+        isPrevious={allNewsData?.newsData?.isPrevious}
         currentPage={allNewsData?.newsData?.currentPage || 0}
-        totalPage={allNewsData?.newsData?.totalPage||0}
+        totalPage={allNewsData?.newsData?.totalPage || 0}
+        handlePageNumberInput={handlePageNumberInput}
       />
       {/* <FunctionalClock/> */}
     </div>

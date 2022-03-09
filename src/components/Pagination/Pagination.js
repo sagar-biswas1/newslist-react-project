@@ -3,21 +3,44 @@ import React, { Component } from "react";
 export default class Pagination extends Component {
   state = {
     isEditable: false,
+    inputFieldValue:0
   };
 
   render() {
-    const {next,previous,currentPage,totalPage}=this.props
+    const {
+      next,
+      previous,
+      currentPage,
+      totalPage,
+      isNext,
+      isPrevious,
+      handlePageNumberInput,
+    } = this.props;
     return (
       <div className="d-flex my-5 align-items-center container">
         <button
           className="btn btn-small btn-outline btn-primary "
           onClick={() => previous()}
+          disabled={!isPrevious}
         >
           Previous
         </button>
         <div className="flex-grow-1 text-center">
           {this.state.isEditable ? (
-            <input type="number" name="" value="1" />
+            <input
+              type="number"
+              name=""
+              value={this.state.inputFieldValue}
+              onChange={(e) =>{ 
+                this.setState({inputFieldValue: e.target.value})
+                handlePageNumberInput(e.target.value)}}
+
+                onKeyPress={(e)=>{
+                  if(e.key==="Enter"){
+                    this.setState({isEditable:false})
+                  }
+                }}
+            />
           ) : (
             <p
               title="Please double click to just"
@@ -32,6 +55,7 @@ export default class Pagination extends Component {
         <button
           className="btn btn-small btn-outline btn-primary"
           onClick={() => next()}
+          disabled={!isNext}
         >
           Next
         </button>

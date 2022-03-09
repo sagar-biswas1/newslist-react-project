@@ -13,7 +13,7 @@ export const newsCategories = {
 const MAX_ITEM_PER_PAGE = 10;
 
 export default class News {
-  constructor(category, searchTerm) {
+  constructor(category, searchTerm='') {
     this._category = category;
     this._searchTerm = searchTerm;
     this._pageSize = MAX_ITEM_PER_PAGE;
@@ -22,7 +22,7 @@ export default class News {
   }
 
   getNews = async () => {
-    console.log(process.env.REACT_APP_SECRET_NAME); // remove this after you've confirmed it working
+  
     console.log(this._getUrl());
     try {
       const { data } = await axios.get(this._getUrl());
@@ -42,9 +42,9 @@ export default class News {
   };
 
   next() {
-    console.log('sorry')
+    
     if (this._isNext()) {
-      console.log('hello')
+      
       this._currentPage++;
       return this.getNews();
     }
@@ -87,7 +87,7 @@ export default class News {
   }
 
   _getUrl() {
-    let url = `top-headlines?apiKey=${apiKey}`;
+    let url = `top-headlines?apiKey=`;
     if (this._category) url += `&category=${this._category}`;
 
     if (this._searchTerm) url += `&q=${this._searchTerm}`;

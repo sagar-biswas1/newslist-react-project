@@ -9,7 +9,7 @@ export const newsCategories = {
   sports: "sports",
   health: "health",
 };
-
+const apiKey = "";
 const MAX_ITEM_PER_PAGE = 10;
 
 export default class News {
@@ -89,7 +89,7 @@ console.log("chategory",newsCategory)
   }
 
   _getUrl() {
-    let url = `top-headlines?apiKey=`;
+    let url = `top-headlines?apiKey=${apiKey}`;
     if (this._category) url += `&category=${this._category}`;
 
     if (this._searchTerm) url += `&q=${this._searchTerm}`;

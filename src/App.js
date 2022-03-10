@@ -10,7 +10,7 @@ import { useState } from "react";
 import News, { newsCategories } from "./newsCategory/index";
 
 const news = new News(newsCategories.technology);
-
+let timeOutId;
 function App() {
   const [category, setCategory] = useState();
 
@@ -25,59 +25,54 @@ function App() {
       .then((data) => setAllNewsData({ newsData: data, isLoading: false }));
   }, []);
 
+  const next = () => {
+    if (allNewsData.newsData.isNext) {
+      console.log("you can go to next page");
 
+      setAllNewsData({ newsData: {}, isLoading: true });
+    }
 
-const  next =()=> {
+    news
+      .next()
+      .then((data) => setAllNewsData({ newsData: data, isLoading: false }));
+  };
 
-  if(allNewsData.newsData.isNext){
+  const previous = () => {
+    console.log(allNewsData.newsData.isPrevious, "sdassssssssssssssssssss");
+    if (allNewsData.newsData.isPrevious) {
+      setAllNewsData({ newsData: {}, isLoading: true });
+      news
+        .previous()
+        .then((data) => setAllNewsData({ newsData: data, isLoading: false }))
+        .catch((e) => alert("sorry you can not go to previous apgae"));
+    } else {
+      return;
+    }
 
-console.log( 'you can go to next page')
+    return false;
+  };
 
-setAllNewsData({ newsData: {}, isLoading: true });
+  const handlePageNumberInput = (delay = 2000) => {
+    return (number) => {
+      if (timeOutId) {
+        clearTimeout(timeOutId);
+      }
+      timeOutId = setTimeout(() => {
+        setAllNewsData({ newsData: {}, isLoading: true });
+        news.setCurrentPage(parseInt(number)).then((data) => {
+          setAllNewsData({ newsData: data, isLoading: false });
+        });
+      }, delay);
+    };
+  };
 
-  }
-
-  news
-    .next()
-    .then((data) => setAllNewsData({ newsData: data, isLoading: false }));
-}
-
-const previous = () => {
-  console.log(allNewsData.newsData.isPrevious,'sdassssssssssssssssssss');
-  if (allNewsData.newsData.isPrevious) {
-  
-
+  const handleCategory = (value) => {
+    setCategory(value);
     setAllNewsData({ newsData: {}, isLoading: true });
-     news
-       .previous()
-       .then((data) => setAllNewsData({ newsData: data, isLoading: false }))
-       .catch((e) => alert("sorry you can not go to previous apgae"));
-  }else{
-    return
-  }
-
- return false
-};
-
-
-const handlePageNumberInput= (number)=>{
-setAllNewsData({ newsData: {}, isLoading: true });
-  news.setCurrentPage(parseInt(number)).then((data)=>{
-setAllNewsData({ newsData: data, isLoading: false });
-  })
-
-  console.log(number)
-
-}
-
-const handleCategory=(value)=>{
-setCategory(value)
-  setAllNewsData({ newsData: {}, isLoading: true });
-  news.changeCategory(value).then((data) => {
-    setAllNewsData({ newsData: data, isLoading: false });
-  });
-
-}
+    news.changeCategory(value).then((data) => {
+      setAllNewsData({ newsData: data, isLoading: false });
+    });
+  };
   return (
     <div className="App">
       <Header category={category} handleCategory={handleCategory} />

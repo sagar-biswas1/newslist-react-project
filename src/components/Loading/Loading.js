@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function Loading() {
   return (
-    <div className="text-center mt-4">
-      <div className="spinner-border text-danger" role="status">
+    <div className="text-center mt-5">
+      <div className="spinner-border text-danger mt-5" role="status">
         <div className="text-center">
           <div className="spinner-border text-warning" role="status">
             <div className="text-center">

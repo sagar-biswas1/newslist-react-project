@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
-import {newsCategories} from '../../newsCategory/index'
-import Clock from '../Clock';
-
-
+import React, { Component } from "react";
+import { newsCategories } from "../../newsCategory/index";
+import Clock from "../Clock";
 
 class Header extends Component {
   constructor(props) {
@@ -11,17 +9,21 @@ class Header extends Component {
     this.state = { searchTerm: "" };
   }
 
-  handleInputChange = (e) => {
-      this.setState({searchTerm:e.target.value})
+  handleInputValue = (cb) => {
+    return (e) => {
+      this.setState({ searchTerm: e.target.value });
+
+      cb()(this.state.searchTerm, 1000);
+    };
   };
 
-  handleOnKeyPress=(e)=> {
-        this.setState({ searchTerm: e.target.value });
-  }
-
+  // handleOnKeyPress=(e)=> {
+  //       this.setState({ searchTerm: e.target.value });
+  //       console.log(this.state)
+  // }
 
   render() {
-   const { category, handleCategory } = this.props;
+    const { category, handleCategory, handleInputChange } = this.props;
     return (
       <div className="container">
         <div className="d-flex justify-content-between p-3 bg-info">
@@ -33,8 +35,9 @@ class Header extends Component {
             type="search"
             className="form-control"
             placeholder="enter your search term"
-            onChange={this.handleInputChange}
-            onKeyPress={this.handleOnKeyPress}
+            onChange={this.handleInputValue( handleInputChange)}
+            // onChange ={this.handleInputValue(() => this.handleInputChange, 2000)}
+            // onKeyPress={this.handleOnKeyPress}
             value={this.state.searchTerm}
           />
         </div>

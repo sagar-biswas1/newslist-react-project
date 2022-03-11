@@ -11,6 +11,7 @@ import News, { newsCategories } from "./newsCategory/index";
 
 const news = new News(newsCategories.technology);
 let timeOutId;
+let searchInputTimeOutID;
 function App() {
   const [category, setCategory] = useState();
 
@@ -38,7 +39,7 @@ function App() {
   };
 
   const previous = () => {
-    console.log(allNewsData.newsData.isPrevious, "sdassssssssssssssssssss");
+    
     if (allNewsData.newsData.isPrevious) {
       setAllNewsData({ newsData: {}, isLoading: true });
       news
@@ -66,6 +67,29 @@ function App() {
     };
   };
 
+
+const handleInputChange=( )=>{
+
+
+
+return(value,delay)=>{
+
+if (searchInputTimeOutID){
+  clearTimeout(searchInputTimeOutID)
+}
+  searchInputTimeOutID = setTimeout(() => {
+    setAllNewsData({ newsData: {}, isLoading: true });
+    news.search(value).then((data) => {
+      setAllNewsData({ newsData: data, isLoading: false });
+    });
+
+  }, delay);
+
+
+}
+
+}
+
   const handleCategory = (value) => {
     setCategory(value);
     setAllNewsData({ newsData: {}, isLoading: true });
@@ -75,7 +99,11 @@ function App() {
   };
   return (
     <div className="App">
-      <Header category={category} handleCategory={handleCategory} />
+      <Header
+        category={category}
+        handleCategory={handleCategory}
+        handleInputChange={handleInputChange}
+      />
       <div className="my-3">
         {!allNewsData.isLoading && (
           <span>

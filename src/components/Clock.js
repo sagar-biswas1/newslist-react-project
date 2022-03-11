@@ -36,8 +36,9 @@ class Clock extends Component {
   render() {
     return (
       <div>
-        <h1>{this.state.date.toLocaleTimeString(this.state.timeString)}</h1>
-        <button onClick={this.changeTimeString} className=' btn-small btn-dark'>Change Time String</button>
+        <span>{this.state.date.toLocaleTimeString(this.state.timeString)}</span>
+        <br />
+        <button onClick={this.changeTimeString} className='btn btn-sm btn-dark'>Change Time String</button>
       </div>
     );
   }

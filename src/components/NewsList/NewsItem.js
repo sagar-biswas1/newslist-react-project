@@ -14,7 +14,7 @@ const NewsItem = ({details}) => {
             <p className="card-text">{description}</p>
           </div>
           <div className="card-footer">
-            <small className="text-muted">{publishedAt}</small>
+            <small className="text-muted">{publishedAt}   <span> <button className='ms-4 btn btn-info btn-small'> See details</button></span></small>
           </div>
         </div>
       </div>

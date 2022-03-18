@@ -9,7 +9,7 @@ export const newsCategories = {
   sports: "sports",
   health: "health",
 };
-const apiKey = "";
+const apiKey = "6ef33175ea344ae9a50694cda7551c4c";
 const MAX_ITEM_PER_PAGE = 10;
 
 export default class News {

@@ -94,7 +94,7 @@ function Home() {
         handleCategory={handleCategory}
         handleInputChange={handleInputChange}
       />
-      <div className="my-3">
+      <div className="my-3 text-center">
         {!allNewsData.isLoading && (
           <span>
             {" "}

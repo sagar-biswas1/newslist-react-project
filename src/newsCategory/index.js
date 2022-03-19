@@ -23,7 +23,7 @@ export default class News {
 
   getNews = async () => {
   
-    console.log(this._getUrl());
+    // console.log(this._getUrl());
     try {
       const { data } = await axios.get(this._getUrl());
       this._totalPage = Math.ceil(data.totalResults / this._pageSize);

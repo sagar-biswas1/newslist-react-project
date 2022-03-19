@@ -48,14 +48,14 @@ class Header extends Component {
                 <button
                   onClick={() => handleCategory(newsCategories[item])}
                   key={newsCategories[item]}
-                  className="btn btn-small btn-warning mx-2"
+                  className="btn btn-small btn-warning mx-2 my-2"
                 >
                   #{newsCategories[item]}
                 </button>
               ) : (
                 <button
                   onClick={() => handleCategory(newsCategories[item])}
-                  className="btn btn-small btn-primary mx-2"
+                  className="btn btn-small btn-primary mx-2 my-2"
                   key={newsCategories[item]}
                 >
                   #{newsCategories[item]}

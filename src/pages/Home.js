@@ -8,11 +8,18 @@ import NewsList from "../components/NewsList/NewsList";
 import Pagination from "../components/Pagination/Pagination";
 import { useState } from "react";
 import News, { newsCategories } from "../newsCategory/index";
-
+import { useQuery } from "react-query";
 const news = new News(newsCategories.technology);
 let timeOutId;
 let searchInputTimeOutID;
 function Home() {
+  //  const { data, isLoading } = useQuery("data", () => {
+  //    return news
+  //      .getNews()
+       
+  //  });
+
+  //  console.log('this is from home ,' ,data)
   const [category, setCategory] = useState();
 
   const [allNewsData, setAllNewsData] = useState({

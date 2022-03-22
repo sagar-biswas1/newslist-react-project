@@ -1,6 +1,7 @@
 import axios from "../utils/axios";
 // require("dotenv").config();
 
+
 export const newsCategories = {
   technology: "technology",
   science: "science",
@@ -26,6 +27,10 @@ export default class News {
     // console.log(this._getUrl());
     try {
       const { data } = await axios.get(this._getUrl());
+
+
+    
+
       this._totalPage = Math.ceil(data.totalResults / this._pageSize);
       return {
         articles: data.articles,

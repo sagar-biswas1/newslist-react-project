@@ -3,7 +3,7 @@ import NewsItem from './NewsItem';
 
 const NewsList = ({news}) => {
 
-  console.log('news',news)
+  // console.log('news',news)
 
     return (
       <div className="">
